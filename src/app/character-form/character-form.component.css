@@ -1,0 +1,33 @@
+#character-form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-group p:nth-child(1) {
+  width: 50%;
+}
+
+.input-group p:nth-child(2) {
+  width: 30%;
+}
+
+.input-group:nth-child(3) {
+  flex-grow: 1;
+}
+
+.input-group select {
+  width: 40%;
+}
+
+.input-button-group {
+  display: flex;
+  gap: 1rem;
+}
