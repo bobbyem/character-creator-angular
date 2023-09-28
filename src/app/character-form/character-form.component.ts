@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Character, defaultCharacter } from '../character';
+import { Character, CharacterClass, CharacterGender } from '../character';
 import { CharacterService } from '../character.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { CharacterService } from '../character.service';
   styleUrls: ['./character-form.component.css'],
 })
 export class CharacterFormComponent {
-  constructor(private characterService: CharacterService) {}
-
-  character: Character = this.characterService.character;
+  constructor(public characterService: CharacterService) {}
 
   handleStatSubtract(stat: keyof Character) {
     this.characterService.subtract(stat);

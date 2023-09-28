@@ -1,23 +1,37 @@
 <form action="handleSubmit" id="character-form">
+  <img [src]="characterService.character.portrait" alt="CharacterPortrait" />
   <h3>Create Character</h3>
-
   <div class="input-group">
     <label for="name-input">Name</label>
-    <input type="text" name="name" id="name-input" />
+    <input
+      type="text"
+      name="name"
+      id="name-input"
+      [(ngModel)]="characterService.character.name"
+    />
   </div>
 
   <div class="input-group">
     <label for="gender-select">Gender</label>
-    <select name="gender-select" id="gender-select" [value]="character.gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="none">None</option>
+    <select
+      name="gender-select"
+      id="gender-select"
+      [(ngModel)]="characterService.character.gender"
+      (change)="characterService.updatePortrait()"
+    >
+      <option value="m">Male</option>
+      <option value="f">Female</option>
     </select>
   </div>
 
   <div class="input-group">
     <label for="class-select">Class</label>
-    <select name="class-select" id="class-select">
+    <select
+      name="class-select"
+      id="class-select"
+      [(ngModel)]="characterService.character.class"
+      (change)="characterService.updatePortrait()"
+    >
       <option value="mage">Mage</option>
       <option value="knight">Knight</option>
       <option value="bard">Bard</option>
@@ -28,7 +42,7 @@
 
   <div class="input-group">
     <p>Strength</p>
-    <p>{{ character.strength }}</p>
+    <p>{{ characterService.character.strength }}</p>
     <div class="input-button-group">
       <button (click)="handleStatSubtract('strength'); $event.preventDefault()">
         -
@@ -41,77 +55,102 @@
 
   <div class="input-group">
     <p>Dexterity</p>
-    <p>{{ character.dexterity }}</p>
+    <p>{{ characterService.character.dexterity }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button
+        (click)="handleStatSubtract('dexterity'); $event.preventDefault()"
+      >
+        -
+      </button>
+      <button (click)="handleStatAdd('dexterity'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Charisma</p>
-    <p>{{ character.charisma }}</p>
+    <p>{{ characterService.character.charisma }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button (click)="handleStatSubtract('charisma'); $event.preventDefault()">
+        -
+      </button>
+      <button (click)="handleStatAdd('charisma'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Endurance</p>
-    <p>{{ character.endurance }}</p>
+    <p>{{ characterService.character.endurance }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button
+        (click)="handleStatSubtract('endurance'); $event.preventDefault()"
+      >
+        -
+      </button>
+      <button (click)="handleStatAdd('endurance'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Intelligence</p>
-    <p>{{ character.intelligence }}</p>
+    <p>{{ characterService.character.intelligence }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button
+        (click)="handleStatSubtract('intelligence'); $event.preventDefault()"
+      >
+        -
+      </button>
+      <button (click)="handleStatAdd('intelligence'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Hitpoints</p>
-    <p>{{ character.hitPoints }}</p>
+    <p>{{ characterService.character.hitPoints }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button
+        (click)="handleStatSubtract('hitPoints'); $event.preventDefault()"
+      >
+        -
+      </button>
+      <button (click)="handleStatAdd('hitPoints'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Mana</p>
-    <p>{{ character.mana }}</p>
+    <p>{{ characterService.character.mana }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button (click)="handleStatSubtract('mana'); $event.preventDefault()">
+        -
+      </button>
+      <button (click)="handleStatAdd('mana'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
 
   <div class="input-group">
     <p>Stamina</p>
-    <p>{{ character.stamina }}</p>
+    <p>{{ characterService.character.stamina }}</p>
     <div class="input-button-group">
-      <button (click)="$event.preventDefault()">-</button>
-      <button (click)="$event.preventDefault()">+</button>
+      <button (click)="handleStatSubtract('stamina'); $event.preventDefault()">
+        -
+      </button>
+      <button (click)="handleStatAdd('stamina'); $event.preventDefault()">
+        +
+      </button>
     </div>
   </div>
-</form>
 
-<!-- name: string;
-  age: number;
-  gender: 'male' | 'female' | 'none';
-  class: 'mage' | 'knight' | 'bard' | 'thief' | 'cleric';
-  strength: number;
-  dexterity: number;
-  charisma: number;
-  intelligence: number;
-  endurance: number;
-  hitPoints: number;
-  mana: number;
-  stamina: number; -->
+  <h2>Stat points: {{ characterService.statPoints }}</h2>
+</form>

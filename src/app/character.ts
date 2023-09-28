@@ -11,17 +11,18 @@ export interface Character {
   hitPoints: number;
   mana: number;
   stamina: number;
+  portrait: string;
 }
 
 export type CharacterClass = 'mage' | 'knight' | 'bard' | 'thief' | 'cleric';
 
-export type CharacterGender = 'male' | 'female' | 'none';
+export type CharacterGender = 'm' | 'f';
 
 export const defaultCharacter: Character = {
-  name: '',
+  name: 'Minsk',
   age: 18,
   class: 'knight',
-  gender: 'male',
+  gender: 'm',
   strength: 5,
   dexterity: 5,
   charisma: 3,
@@ -30,4 +31,5 @@ export const defaultCharacter: Character = {
   hitPoints: 10,
   mana: 5,
   stamina: 5,
+  portrait: '',
 };

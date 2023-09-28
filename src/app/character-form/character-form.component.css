@@ -1,8 +1,18 @@
+input,
+select {
+  font-family: "Sherwood";
+}
+
 #character-form {
   max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+#character-form img {
+  max-width: 200px;
+  border-radius: 5px;
 }
 
 .input-group {

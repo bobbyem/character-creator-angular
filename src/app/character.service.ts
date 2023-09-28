@@ -5,23 +5,35 @@ import {
   CharacterGender,
   defaultCharacter,
 } from './character';
+import { portraits } from 'src/assets/img/portraits/portraits';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService {
   character: Character = defaultCharacter;
+  statPoints: number = 10;
 
-  constructor() {}
+  constructor() {
+    this.initializeService();
+  }
 
   subtract(stat: keyof Character) {
-    --this.character[stat];
-    console.log(stat + this.character[stat]);
+    const statValue = Number(this.character[stat]);
+
+    if (!isNaN(statValue) && statValue > 0) {
+      --this.character[stat];
+      ++this.statPoints;
+      return;
+    }
+    console.log("Can't lower stat more than 0");
   }
 
   add(stat: keyof Character) {
-    ++this.character[stat];
-    console.log(stat + this.character[stat]);
+    if (this.statPoints > 0) {
+      ++this.character[stat];
+      --this.statPoints;
+    }
   }
 
   changeName(name: string) {
@@ -30,9 +42,25 @@ export class CharacterService {
 
   changeGender(gender: CharacterGender) {
     this.character.gender = gender;
+    this.updatePortrait();
   }
 
   changeClass(newClass: CharacterClass) {
     this.character.class = newClass;
+    this.updatePortrait();
+  }
+
+  updatePortrait() {
+    const portraitSRC:
+      | string
+      | undefined = `${this.character.class}_${this.character.gender}.png`;
+    const portrait: string = portraits.find((p) => p === portraitSRC) || '';
+
+    this.character.portrait = '../assets/img/portraits/' + portrait;
+  }
+
+  initializeService() {
+    this.updatePortrait();
+    console.log('CharacterService initialized');
   }
 }

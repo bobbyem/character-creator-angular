@@ -1,1 +1,16 @@
-<p>character-summary works!</p>
+<section id="character-summary">
+  <h2>{{ characterService.character.name }}</h2>
+  <img [src]="characterService.character.portrait" alt="character portrait" />
+  <p>
+    {{ characterService.character.gender === "m" ? "Male" : "Female" }}
+    {{ characterService.character.class }}
+  </p>
+  <p>Strength: {{ characterService.character.strength }}</p>
+  <p>Dexterity: {{ characterService.character.dexterity }}</p>
+  <p>Charisma: {{ characterService.character.charisma }}</p>
+  <p>Endurance: {{ characterService.character.endurance }}</p>
+  <p>Intelligence: {{ characterService.character.intelligence }}</p>
+  <p>Hitpoints: {{ characterService.character.hitPoints }}</p>
+  <p>Mana: {{ characterService.character.mana }}</p>
+  <p>Stamina: {{ characterService.character.stamina }}</p>
+</section>
